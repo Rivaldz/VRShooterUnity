@@ -1,35 +1,79 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HitBall : MonoBehaviour
 {
-    public GameObject target;
-    bool gvrStatus;
-    float gvrTimer;
-    
+    public GameObject ball, cube; 
+    public float gazeTime = 2f;
+    private float timer;
+    private bool gazedAt,gazeCube;
 
-    // Start is called before the first frame update
+    // Use this for initialization
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gvrStatus && Input.GetButtonDown("Fire1"))
+
+        if (gazedAt)
         {
-           target.SetActive(false);
-           gvrTimer += Time.deltaTime;
+            timer += Time.deltaTime;
+
+            if (timer >= gazeTime)
+            {
+                // execute pointerdown handler
+                // ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+                ball.SetActive(false);
+                // cube.SetActive(false);
+                Debug.Log("pointer true");
+                timer = 0f;
+            }
         }
-        
+        if (gazeCube)
+        {
+            timer += Time.deltaTime;
+            if (timer >= gazeTime)
+            {
+                // execute pointerdown handler
+                // ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+                // ball.SetActive(false);
+                cube.SetActive(false);
+                Debug.Log("pointer true");
+                timer = 0f;
+            }
+        }
+
     }
-    public void GVRon(){
-        gvrStatus = true;
+
+    public void PointerEnter()
+    {
+        gazedAt = true;
+        Debug.Log("PointerEnter");
     }
-    public void GVRoff(){
-        gvrStatus = false;
-        gvrTimer = 0;
+
+    public void PointerExit()
+    {
+        gazedAt = false;
+        Debug.Log("PointerExit");
+    }
+     public void PointerEnterCube()
+    {
+        gazeCube = true;
+        Debug.Log("PointerEnter");
+    }
+
+    public void PointerExitCube()
+    {
+        gazeCube = false;
+        Debug.Log("PointerExit");
+    }
+    public void PointerDown()
+    {
+        Debug.Log("PointerDown");
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 public class HitBall : MonoBehaviour
 {
-    public GameObject ball, cube; 
+    public GameObject ball, cube, secondBall; 
     public float gazeTime = 2f;
     private float timer;
-    private bool gazedAt,gazeCube;
+    private bool gazedAt,gazeCube,gazeBall;
 
     // Use this for initialization
     void Start()
@@ -20,32 +20,22 @@ public class HitBall : MonoBehaviour
     void Update()
     {
 
-        if (gazedAt)
+        if (gazedAt && Input.GetButtonDown("Fire1"))
         {
-            timer += Time.deltaTime;
+            ball.SetActive(false);
+            SoundManagerScript.PlaySound("click");
 
-            if (timer >= gazeTime)
-            {
-                // execute pointerdown handler
-                // ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
-                ball.SetActive(false);
-                // cube.SetActive(false);
-                Debug.Log("pointer true");
-                timer = 0f;
-            }
         }
-        if (gazeCube)
+
+        if (gazeCube && Input.GetButtonDown("Fire1"))
         {
-            timer += Time.deltaTime;
-            if (timer >= gazeTime)
-            {
-                // execute pointerdown handler
-                // ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
-                // ball.SetActive(false);
-                cube.SetActive(false);
-                Debug.Log("pointer true");
-                timer = 0f;
-            }
+
+            SoundManagerScript.PlaySound("destroy");
+            cube.SetActive(false);
+        }
+
+        if (gazeBall && Input.GetButtonDown("Fire1")){
+            secondBall.SetActive(false);
         }
 
     }
@@ -70,6 +60,18 @@ public class HitBall : MonoBehaviour
     public void PointerExitCube()
     {
         gazeCube = false;
+        Debug.Log("PointerExit");
+    }
+
+      public void PointerEnterBall2()
+    {
+        gazeBall = true;
+        Debug.Log("PointerEnter");
+    }
+
+    public void PointerExitBall2()
+    {
+        gazeBall = false;
         Debug.Log("PointerExit");
     }
     public void PointerDown()

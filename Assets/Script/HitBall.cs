@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HitBall : MonoBehaviour
 {
-    public GameObject ball, ball2, ball3, ball4, ball5; 
+    public GameObject ball, ball2, ball3, ball4, ball5,canvas;
     public float gazeTime = 2f;
+    public Text txtScore;
     private float timer;
     private bool gazeBall,gazeBall2,gazeBall3,gazeBall4,gazeBall5;
+    private int scores = 0;
 
     // Use this for initialization
     void Start()
     {
+        canvas.SetActive(false);
+        // scoresString = GetComponent<TextScores>();
 
     }
 
@@ -22,33 +27,48 @@ public class HitBall : MonoBehaviour
 
         if (gazeBall && Input.GetButtonDown("Fire1"))
         {
+
+            scores++;
             ball.SetActive(false);
             SoundManagerScript.PlaySound("destroy");
 
         }
 
-        if (gazeBall2 && Input.GetButtonDown("Fire1"))
+        if(gazeBall2 && Input.GetButtonDown("Fire1"))
         {
 
+            scores++;
             ball2.SetActive(false);
             SoundManagerScript.PlaySound("destroy");
         }
 
         if (gazeBall3 && Input.GetButtonDown("Fire1")){
+
+            scores++;
             ball3.SetActive(false);
             SoundManagerScript.PlaySound("destroy");
         }
 
         if (gazeBall4 && Input.GetButtonDown("Fire1")){
+
+            scores++;
             ball4.SetActive(false);
             SoundManagerScript.PlaySound("destroy");
 
         }
 
         if (gazeBall5 && Input.GetButtonDown("Fire1")){
+
+            scores++;
             ball5.SetActive(false);
             SoundManagerScript.PlaySound("destroy");
         }
+
+        // if(scores == 5){
+        //     canvas.SetActive(true);
+        // }
+        txtScore.text="Scores : " + scores.ToString();
+
     }
 
     public void Ball1Enter()

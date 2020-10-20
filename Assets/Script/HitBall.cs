@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 public class HitBall : MonoBehaviour
 {
-    public GameObject ball, cube, secondBall; 
+    public GameObject ball, ball2, ball3, ball4, ball5; 
     public float gazeTime = 2f;
     private float timer;
-    private bool gazedAt,gazeCube,gazeBall;
+    private bool gazeBall,gazeBall2,gazeBall3,gazeBall4,gazeBall5;
 
     // Use this for initialization
     void Start()
@@ -20,62 +20,93 @@ public class HitBall : MonoBehaviour
     void Update()
     {
 
-        if (gazedAt && Input.GetButtonDown("Fire1"))
+        if (gazeBall && Input.GetButtonDown("Fire1"))
         {
             ball.SetActive(false);
-            SoundManagerScript.PlaySound("click");
+            SoundManagerScript.PlaySound("destroy");
 
         }
 
-        if (gazeCube && Input.GetButtonDown("Fire1"))
+        if (gazeBall2 && Input.GetButtonDown("Fire1"))
         {
 
+            ball2.SetActive(false);
             SoundManagerScript.PlaySound("destroy");
-            cube.SetActive(false);
         }
 
-        if (gazeBall && Input.GetButtonDown("Fire1")){
-            secondBall.SetActive(false);
+        if (gazeBall3 && Input.GetButtonDown("Fire1")){
+            ball3.SetActive(false);
+            SoundManagerScript.PlaySound("destroy");
         }
 
+        if (gazeBall4 && Input.GetButtonDown("Fire1")){
+            ball4.SetActive(false);
+            SoundManagerScript.PlaySound("destroy");
+
+        }
+
+        if (gazeBall5 && Input.GetButtonDown("Fire1")){
+            ball5.SetActive(false);
+            SoundManagerScript.PlaySound("destroy");
+        }
     }
 
-    public void PointerEnter()
-    {
-        gazedAt = true;
-        Debug.Log("PointerEnter");
-    }
-
-    public void PointerExit()
-    {
-        gazedAt = false;
-        Debug.Log("PointerExit");
-    }
-     public void PointerEnterCube()
-    {
-        gazeCube = true;
-        Debug.Log("PointerEnter");
-    }
-
-    public void PointerExitCube()
-    {
-        gazeCube = false;
-        Debug.Log("PointerExit");
-    }
-
-      public void PointerEnterBall2()
+    public void Ball1Enter()
     {
         gazeBall = true;
         Debug.Log("PointerEnter");
     }
 
-    public void PointerExitBall2()
+    public void Ball1Exit()
     {
         gazeBall = false;
         Debug.Log("PointerExit");
     }
-    public void PointerDown()
+
+     public void Ball2Enter()
     {
-        Debug.Log("PointerDown");
+        gazeBall2 = true;
+        Debug.Log("PointerEnter");
     }
+
+    public void Ball2Exit()
+    {
+        gazeBall2 = false;
+        Debug.Log("PointerExit");
+    }
+
+      public void Ball3Enter()
+    {
+        gazeBall3 = true;
+        Debug.Log("PointerEnter");
+    }
+
+    public void Ball3Exit()
+    {
+        gazeBall3 = false;
+        Debug.Log("PointerExit");
+    }
+  public void Ball4Enter()
+    {
+        gazeBall4 = true;
+        Debug.Log("PointerEnter");
+    }
+
+    public void Ball4Exit()
+    {
+        gazeBall4 = false;
+        Debug.Log("PointerExit");
+    }
+  public void Ball5Enter()
+    {
+        gazeBall5= true;
+        Debug.Log("PointerEnter");
+    }
+
+    public void Ball5Exit()
+    {
+        gazeBall5 = false;
+        Debug.Log("PointerExit");
+    }
+
 }

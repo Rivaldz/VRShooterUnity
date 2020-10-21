@@ -25,48 +25,53 @@ public class HitBall : MonoBehaviour
     void Update()
     {
 
-        if (gazeBall && Input.GetButtonDown("Fire1"))
+        if (gazeBall == true && Input.GetButtonDown("Fire1"))
         {
 
             scores++;
+            SoundManagerScript.PlaySound("destroy");
             ball.SetActive(false);
-            SoundManagerScript.PlaySound("destroy");
+            gazeBall = false;
 
         }
 
-        if(gazeBall2 && Input.GetButtonDown("Fire1"))
+        if(gazeBall2 == true && Input.GetButtonDown("Fire1"))
         {
 
             scores++;
+            SoundManagerScript.PlaySound("destroy");
             ball2.SetActive(false);
-            SoundManagerScript.PlaySound("destroy");
+            gazeBall2 = false;
         }
 
-        if (gazeBall3 && Input.GetButtonDown("Fire1")){
+        if (gazeBall3 == true && Input.GetButtonDown("Fire1")){
 
             scores++;
+            SoundManagerScript.PlaySound("destroy");
             ball3.SetActive(false);
-            SoundManagerScript.PlaySound("destroy");
+            gazeBall3 = false;
         }
 
-        if (gazeBall4 && Input.GetButtonDown("Fire1")){
+        if (gazeBall4 == true && Input.GetButtonDown("Fire1")){
 
             scores++;
+            SoundManagerScript.PlaySound("destroy");
             ball4.SetActive(false);
-            SoundManagerScript.PlaySound("destroy");
+            gazeBall4 = false;
 
         }
 
-        if (gazeBall5 && Input.GetButtonDown("Fire1")){
+        if (gazeBall5 == true && Input.GetButtonDown("Fire1")){
 
             scores++;
-            ball5.SetActive(false);
             SoundManagerScript.PlaySound("destroy");
+            ball5.SetActive(false);
+            gazeBall5 = false;
         }
 
-        // if(scores == 5){
-        //     canvas.SetActive(true);
-        // }
+        if(scores == 5){
+            canvas.SetActive(true);
+        }
         txtScore.text="Scores : " + scores.ToString();
 
     }
@@ -80,7 +85,6 @@ public class HitBall : MonoBehaviour
     public void Ball1Exit()
     {
         gazeBall = false;
-        Debug.Log("PointerExit");
     }
 
      public void Ball2Enter()

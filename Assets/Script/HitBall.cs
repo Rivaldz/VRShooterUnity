@@ -9,7 +9,7 @@ public class HitBall : MonoBehaviour
     public GameObject ball, ball2, ball3, ball4, ball5,canvas;
     public float gazeTime = 2f;
     public Text txtScore;
-    private float timer;
+     private float timer;
     private bool gazeBall,gazeBall2,gazeBall3,gazeBall4,gazeBall5;
     private int scores = 0;
 
@@ -17,7 +17,7 @@ public class HitBall : MonoBehaviour
     void Start()
     {
         canvas.SetActive(false);
-        // scoresString = GetComponent<TextScores>();
+  
 
     }
 

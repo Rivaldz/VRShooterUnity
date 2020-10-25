@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HitBall : MonoBehaviour
 {
-    public GameObject ball, ball2, ball3, ball4, ball5,canvas;
+    public GameObject ball, ball2, ball3, ball4, ball5,canvas,cubeNext;
     public float gazeTime = 2f;
     public Text txtScore;
      private float timer;
-    private bool gazeBall,gazeBall2,gazeBall3,gazeBall4,gazeBall5;
+    private bool gazeBall,gazeBall2,gazeBall3,gazeBall4,gazeBall5,buttonNext;
     private int scores = 0;
 
     // Use this for initialization
     void Start()
     {
         canvas.SetActive(false);
+        cubeNext.SetActive(false);
   
 
     }
@@ -24,6 +26,8 @@ public class HitBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
 
         if (gazeBall == true && Input.GetButtonDown("Fire1"))
         {
@@ -68,9 +72,19 @@ public class HitBall : MonoBehaviour
             ball5.SetActive(false);
             gazeBall5 = false;
         }
+        if(buttonNext == true && Input.GetButtonDown("Fire1")){
+            Debug.Log("klik button next");
+            if(sceneName == "Scene1"){
+                SceneManager.LoadScene(0);
+            }
+            else if(sceneName == "Scene2"){
+                SceneManager.LoadScene(2);
+            }
+        }
 
         if(scores == 5){
             canvas.SetActive(true);
+            cubeNext.SetActive(true);
         }
         txtScore.text="Scores : " + scores.ToString();
 
@@ -131,6 +145,17 @@ public class HitBall : MonoBehaviour
     {
         gazeBall5 = false;
         Debug.Log("PointerExit");
+    }
+     public void ButtonEnter()
+    {
+        buttonNext= true;
+        Debug.Log("PointerEnter NextButton");
+    }
+
+    public void ButtonExit()
+    {
+        buttonNext= false;
+        Debug.Log("PointerExit NextButton");
     }
 
 }

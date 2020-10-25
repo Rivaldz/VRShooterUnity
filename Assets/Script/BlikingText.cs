@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class BlikingText : MonoBehaviour
 {
     // Start is called before the first frame update
+    // public Text txt;
+
     Text text;  
     void Start()
     {
@@ -29,7 +31,6 @@ public class BlikingText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void StartBlinking()

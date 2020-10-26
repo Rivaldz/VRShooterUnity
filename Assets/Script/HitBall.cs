@@ -13,13 +13,13 @@ public class HitBall : MonoBehaviour
      private float timer;
     private bool gazeBall,gazeBall2,gazeBall3,gazeBall4,gazeBall5,buttonNext;
     private int scores = 0;
-
+    private bool isMuted;
     // Use this for initialization
     void Start()
     {
         canvas.SetActive(false);
         cubeNext.SetActive(false);
-  
+        isMuted = false;
 
     }
 
@@ -158,4 +158,14 @@ public class HitBall : MonoBehaviour
         Debug.Log("PointerExit NextButton");
     }
 
+    public void MutePressed()
+    {
+        isMuted = !isMuted;
+        AudioListener.pause = isMuted;
+    }
+
+    public void KeluarAplikasi()
+    {
+        Application.Quit();
+    }
 }

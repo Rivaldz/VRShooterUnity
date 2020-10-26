@@ -14,5 +14,6 @@ public class WelcomeScreen : MonoBehaviour
     public void KeluarAplikasi()
     {
         Application.Quit();
+        Debug.Log("Quit!");
     }
 }
